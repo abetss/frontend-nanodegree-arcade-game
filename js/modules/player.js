@@ -53,6 +53,10 @@ Player.prototype.tryMoveUp = function() {
 	if(this.rowPosition > 0) {
 		this.rowPosition--;
 	}
+	if(this.rowPosition === 0) {
+		player.onWin();
+	}
+
 };
 
 Player.prototype.tryMoveDown = function() {
@@ -73,4 +77,7 @@ Player.prototype.tryMoveRight = function() {
 	}
 };
 
+Player.prototype.onWin = function() {
+	this.reset();
+};
 

@@ -5,24 +5,13 @@ var Enemy = function(speed, player) {
 	this.calculateInitPosition();
 	this.speed = speed * 100;
 	this.player = player;
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
     this.moveRight(dt);
-    // if(this.speed === 700) {
-    // 	console.log('x: ' + this.x + ', y: ' +this.y);
-    // }
     if(this.isColideWithPlayer()) {
     	this.dispatch('onColission');
     }

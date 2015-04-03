@@ -37,6 +37,5 @@ document.addEventListener('keyup', function(e) {
 });
 
 document.addEventListener('onColission', function(e) {
-    console.log('colision:');
     player.reset();
 });
