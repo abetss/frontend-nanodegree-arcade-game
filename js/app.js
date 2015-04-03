@@ -10,12 +10,18 @@
 // Place the player object in a variable called player
 
 
-
-var enemy1 = new Enemy();
-var allEnemies = []; 
+var enemy1 = new Enemy(2,6),
+    enemy2 = new Enemy(3,5),
+    enemy3 = new Enemy(4,4),
+    allEnemies = []; 
 allEnemies.push(enemy1);
+allEnemies.push(enemy2);
+allEnemies.push(enemy3);
 
-var player = new Player();
+var player = new Player(2,5);
+
+        
+  
 
 
 
