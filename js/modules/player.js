@@ -1,24 +1,30 @@
 var Player = function(initColumn, initRow) {
-	this.columnPosition = initColumn;
-	this.rowPosition = initRow;
+	MovableObject.call(this);
+
 	this.initColumn = initColumn;
 	this.initRow = initRow;
-    this.calculatePosition();
     this.sprite = 'images/char-boy.png';
     this.porpotion = {
     	width: 150,
     	height: 200
     };
+
+    this.init();
+};
+
+Player.prototype = Object.create(MovableObject.prototype);
+Player.prototype.constructor = Enemy;
+
+Player.prototype.init = function() {
+	this.columnPosition = this.initColumn;
+	this.rowPosition = this.initRow;
+	this.calculatePosition();
 };
 
 Player.prototype.update = function(dt) {
 	this.calculatePosition();
 };
 
-// Draw the enemy on the screen, required method for game
-Player.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
 
 Player.prototype.handleInput = function(input) {
 	switch(input) {

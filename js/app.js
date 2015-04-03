@@ -15,7 +15,7 @@ var player = new Player(2,5);
 var enemy1 = new Enemy(6, player),
     enemy2 = new Enemy(5, player),
     enemy3 = new Enemy(4, player),
-    enemy4 = new Enemy(7, player),
+    enemy4 = new Enemy(3, player),
     allEnemies = []; 
 allEnemies.push(enemy1);
 allEnemies.push(enemy2);

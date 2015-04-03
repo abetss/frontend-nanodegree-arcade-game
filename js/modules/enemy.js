@@ -1,11 +1,21 @@
 // Enemies our player must avoid
 var Enemy = function(speed, player) {
+	MovableObject.call(this);
+
 	this.columnPosition = -1;
-	this.rowPosition = this.getRandomInt(1,5);
-	this.calculateInitPosition();
 	this.speed = speed * 100;
 	this.player = player;
     this.sprite = 'images/enemy-bug.png';
+
+    this.init();
+};
+
+Enemy.prototype = Object.create(MovableObject.prototype);
+Enemy.prototype.constructor = Enemy;
+
+Enemy.prototype.init = function() {
+	this.rowPosition = this.getRandomInt(1,5);
+	this.calculatePosition();
 };
 
 // Update the enemy's position, required method for game
@@ -15,15 +25,6 @@ Enemy.prototype.update = function(dt) {
     if(this.isColideWithPlayer()) {
     	this.dispatch('onColission');
     }
-};
-
-Enemy.prototype.dispatch = function(eventName, eventData) {
-	var customEvent = document.createEvent('Event');
-	customEvent.initEvent(eventName, true, true);
-	if(eventData) {
-		customEvent.data = eventData;
-	}
-	document.dispatchEvent(customEvent);
 };
 
 Enemy.prototype.isColideWithPlayer = function() {
@@ -40,11 +41,7 @@ Enemy.prototype.isColideWithPlayer = function() {
 Enemy.prototype.reset = function() {
 	this.rowPosition = this.getRandomInt(1,5);
 	this.columnPosition = -1;
-	this.calculateInitPosition();
-};
-
-Enemy.prototype.getRandomInt = function(min, max) {
-	return Math.floor(Math.random() * (max - min)) + min;
+	this.calculatePosition();
 };
 
 Enemy.prototype.moveRight = function(dt) {
@@ -54,12 +51,8 @@ Enemy.prototype.moveRight = function(dt) {
 	}
 };
 
-Enemy.prototype.calculateInitPosition = function() {
+Enemy.prototype.calculatePosition = function() {
 	this.x = this.columnPosition * 101;
 	this.y = this.rowPosition * 83 - 20;
 };
 
-// Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
