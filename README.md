@@ -1,6 +1,7 @@
 frontend-nanodegree-arcade-game
 ===============================
 
-Students should use this rubric: https://www.udacity.com/course/viewer#!/c-ud015/l-3072058665/m-3072588797
-
-for self-checking their submission.
+In order to run this on your local machine:
+ - Download or Clone this repository to your local machine. 
+ - open the index.html in a web browser
+ - play safe
