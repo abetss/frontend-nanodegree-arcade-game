@@ -5,6 +5,10 @@ var Player = function(initColumn, initRow) {
 	this.initRow = initRow;
     this.calculatePosition();
     this.sprite = 'images/char-boy.png';
+    this.porpotion = {
+    	width: 150,
+    	height: 200
+    };
 };
 
 Player.prototype.update = function(dt) {

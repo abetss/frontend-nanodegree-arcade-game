@@ -1,7 +1,7 @@
 // Enemies our player must avoid
-var Enemy = function(initRow, speed, player) {
+var Enemy = function(speed, player) {
 	this.columnPosition = -1;
-	this.rowPosition = initRow;
+	this.rowPosition = this.getRandomInt(1,5);
 	this.calculateInitPosition();
 	this.speed = speed * 100;
 	this.player = player;
@@ -20,6 +20,9 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.moveRight(dt);
+    // if(this.speed === 700) {
+    // 	console.log('x: ' + this.x + ', y: ' +this.y);
+    // }
     if(this.isColideWithPlayer()) {
     	this.dispatch('onColission');
     }
@@ -35,7 +38,9 @@ Enemy.prototype.dispatch = function(eventName, eventData) {
 };
 
 Enemy.prototype.isColideWithPlayer = function() {
-	if(this.x === this.player.x && this.y === this.player.y) {
+	var playHalfWidth = player.porpotion.width / 2;
+	if(this.rowPosition === this.player.rowPosition && 
+		(this.x > player.x - playHalfWidth && this.x < player.x + playHalfWidth)) {
 		return true;
 	}
 	else {
@@ -44,7 +49,7 @@ Enemy.prototype.isColideWithPlayer = function() {
 };
 
 Enemy.prototype.reset = function() {
-	this.rowPosition = this.getRandomInt(1,4);
+	this.rowPosition = this.getRandomInt(1,5);
 	this.columnPosition = -1;
 	this.calculateInitPosition();
 };
@@ -62,7 +67,7 @@ Enemy.prototype.moveRight = function(dt) {
 
 Enemy.prototype.calculateInitPosition = function() {
 	this.x = this.columnPosition * 101;
-	this.y = this.rowPosition * 83 - 12;
+	this.y = this.rowPosition * 83 - 20;
 };
 
 // Draw the enemy on the screen, required method for game

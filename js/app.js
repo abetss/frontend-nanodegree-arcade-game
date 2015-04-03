@@ -12,14 +12,15 @@
 
 var player = new Player(2,5);
 
-var enemy1 = new Enemy(2,6, player),
-    enemy2 = new Enemy(3,5, player),
-    enemy3 = new Enemy(4,4, player),
+var enemy1 = new Enemy(6, player),
+    enemy2 = new Enemy(5, player),
+    enemy3 = new Enemy(4, player),
+    enemy4 = new Enemy(7, player),
     allEnemies = []; 
 allEnemies.push(enemy1);
 allEnemies.push(enemy2);
 allEnemies.push(enemy3);
-
+allEnemies.push(enemy4);
 
 
 // This listens for key presses and sends the keys to your
@@ -31,7 +32,6 @@ document.addEventListener('keyup', function(e) {
         39: 'right',
         40: 'down'
     };
-
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
