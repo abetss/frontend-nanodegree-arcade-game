@@ -10,18 +10,15 @@
 // Place the player object in a variable called player
 
 
-var enemy1 = new Enemy(2,6),
-    enemy2 = new Enemy(3,5),
-    enemy3 = new Enemy(4,4),
+var player = new Player(2,5);
+
+var enemy1 = new Enemy(2,6, player),
+    enemy2 = new Enemy(3,5, player),
+    enemy3 = new Enemy(4,4, player),
     allEnemies = []; 
 allEnemies.push(enemy1);
 allEnemies.push(enemy2);
 allEnemies.push(enemy3);
-
-var player = new Player(2,5);
-
-        
-  
 
 
 
@@ -35,5 +32,11 @@ document.addEventListener('keyup', function(e) {
         40: 'down'
     };
 
+
     player.handleInput(allowedKeys[e.keyCode]);
+});
+
+document.addEventListener('onColission', function(e) {
+    console.log('colision:');
+    player.reset();
 });
